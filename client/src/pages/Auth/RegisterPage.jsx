@@ -25,7 +25,8 @@ export function RegisterPage() {
   const onSubmit = async (values) => {
     const result = await dispatch(registerUser(values));
     if (registerUser.fulfilled.match(result)) {
-      navigate('/verify-email', { state: { email: values.email }, replace: true });
+      // OTP verification disabled → go directly to login
+      navigate('/login', { replace: true });
     }
   };
 
