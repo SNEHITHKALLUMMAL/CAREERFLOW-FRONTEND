@@ -20,10 +20,10 @@ export function LoginPage() {
   const onSubmit = async (values) => {
     const result = await dispatch(login(values));
     if (login.fulfilled.match(result)) {
+      // Login successful → go to dashboard
       navigate(location.state?.from?.pathname || '/dashboard', { replace: true });
-    } else if (result.payload?.errors?.some((e) => e.message === 'unverified')) {
-      navigate('/verify-email', { state: { email: values.email }, replace: true });
     }
+    // OTP / unverified check completely removed
   };
 
   return (
